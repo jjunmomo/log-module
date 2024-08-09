@@ -2,6 +2,8 @@ package link.aiapp.logservice.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 @Entity
 @Table(name = "MBS_LOG", indexes = {
@@ -36,7 +38,7 @@ public class Log {
     private String logMessage;
 
     @Column(name = "TIMESTAMP", nullable = false)
-    private Timestamp timestamp;
+    private LocalDate timestamp;
 
     @Column(name = "DURATION")
     private Integer duration;
@@ -56,6 +58,11 @@ public class Log {
         this.httpMethod = httpMethod;
     }
 
+
+    @PrePersist
+    protected void onCreate() {
+        this.timestamp = LocalDate.now(ZoneId.of("Asia/Seoul"));
+    }
 
     public Long getLogId() {
         return logId;

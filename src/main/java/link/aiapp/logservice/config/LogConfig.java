@@ -21,14 +21,6 @@ public class LogConfig {
         System.out.println("Application Name: " + applicationName);
         return new LogInterceptor(logRepository, tracer, applicationName);
     }
-
-    @PostConstruct
-    public void init() {
-        // 애플리케이션의 기본 시간대를 서울로 설정
-        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
-        System.out.println("Default TimeZone set to Asia/Seoul");
-    }
-
 //
 //    private final ApplicationContext applicationContext;
 //    private final String applicationName;
