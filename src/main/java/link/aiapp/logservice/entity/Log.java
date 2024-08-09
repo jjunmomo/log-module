@@ -3,6 +3,7 @@ package link.aiapp.logservice.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 @Entity
@@ -37,10 +38,8 @@ public class Log {
     @Column(name = "LOG_MESSAGE", columnDefinition = "TEXT")
     private String logMessage;
 
-
-
     @Column(name = "TIMESTAMP", nullable = false)
-    private LocalDate localDate;
+    private LocalDateTime localDateTime;
 
     @Column(name = "DURATION")
     private Integer duration;
@@ -63,7 +62,7 @@ public class Log {
 
     @PrePersist
     protected void onCreate() {
-        this.localDate = LocalDate.now(ZoneId.of("Asia/Seoul"));
+        this.localDateTime = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
     }
 
     public Long getLogId() {
@@ -138,11 +137,4 @@ public class Log {
         this.endpoint = endpoint;
     }
 
-    public LocalDate getLocalDate() {
-        return localDate;
-    }
-
-    public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
-    }
 }
