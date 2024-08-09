@@ -37,8 +37,10 @@ public class Log {
     @Column(name = "LOG_MESSAGE", columnDefinition = "TEXT")
     private String logMessage;
 
+
+
     @Column(name = "TIMESTAMP", nullable = false)
-    private LocalDate timestamp;
+    private LocalDate localDate;
 
     @Column(name = "DURATION")
     private Integer duration;
@@ -61,7 +63,7 @@ public class Log {
 
     @PrePersist
     protected void onCreate() {
-        this.timestamp = LocalDate.now(ZoneId.of("Asia/Seoul"));
+        this.localDate = LocalDate.now(ZoneId.of("Asia/Seoul"));
     }
 
     public Long getLogId() {
@@ -120,14 +122,6 @@ public class Log {
         this.logMessage = logMessage;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public Integer getDuration() {
         return duration;
     }
@@ -142,5 +136,13 @@ public class Log {
 
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
     }
 }

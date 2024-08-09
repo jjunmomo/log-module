@@ -56,7 +56,6 @@ public class LogInterceptor implements HandlerInterceptor {
 
         // 추가적인 요청 정보를 로그에 설정
         log.setEndpoint(request.getRequestURI());
-        log.setTimestamp(new Timestamp(startTime));
         log.setLogLevel("INFO");
         log.setLogMessage("Incoming request: " + request.getMethod() + " " + request.getRequestURI());
         log.setDuration(duration);
