@@ -4,10 +4,11 @@ import link.aiapp.logservice.Interceptor.LogInterceptor;
 import link.aiapp.logservice.repository.LogRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.sleuth.Tracer;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
 
 @Configuration
 public class LogConfig {
@@ -19,6 +20,13 @@ public class LogConfig {
         System.out.println("Tracer: " + tracer); // 로그로 빈 확인
         System.out.println("Application Name: " + applicationName);
         return new LogInterceptor(logRepository, tracer, applicationName);
+    }
+
+    @PostConstruct
+    public void init() {
+        // 애플리케이션의 기본 시간대를 서울로 설정
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+        System.out.println("Default TimeZone set to Asia/Seoul");
     }
 
 //
